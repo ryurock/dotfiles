@@ -71,7 +71,3 @@ set clipboard=unnamed
 map <C-p>   :Vexplore<CR>
 "" コマンドライン補完するときに強化されたものを使う(参照 :help wildmenu)
 set wildmenu
-
-"" コマンドライン補間をシェルっぽく
-set wildmode=list:longest
-

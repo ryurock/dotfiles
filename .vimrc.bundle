@@ -1,0 +1,97 @@
+"vunlde.vimで管理してるpluginを読み込む
+
+filetype off
+
+if has('vim_starting')
+  set runtimepath+=~/.vim/bundle/neobundle.vim
+  call neobundle#rc(expand('~/.vim/bundle/'))
+endif
+
+set rtp+=~/.vim/bundle/vundle/
+" call vundle#rc()
+
+NeoBundle 'Shougo/neobundle.vim'
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'VimClojure'
+NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/vimfiler.vim'
+
+" 自動閉じタグ
+NeoBundle 'yuroyoro/vim-autoclose'
+NeoBundle 'jpalardy/vim-slime'
+NeoBundle 'scrooloose/syntastic'
+
+" smooth_scroll.vim : スクロールを賢く
+" NeoBundle 'Smooth-Scroll'
+NeoBundle 'yuroyoro/smooth_scroll.vim'
+
+" vim-ruby : VimでRubyを扱う際の最も基本的な拡張機能
+NeoBundle 'vim-ruby/vim-ruby'
+
+" rails.vim : rails的なアレ
+NeoBundle 'tpope/vim-rails'
+
+" Pydiction : Python用の入力補完
+NeoBundle 'Pydiction'
+
+" ソースコード上のメソッド宣言、変数宣言の一覧を表示
+NeoBundle 'taglist.vim'
+
+" エラーがある場所をhilight
+NeoBundle 'errormarker.vim'
+
+" Syntax {{{
+  " haml
+  NeoBundle 'haml.zip'
+
+  " JavaScript
+  NeoBundle 'JavaScript-syntax'
+
+  " jQuery
+  NeoBundle 'jQuery'
+
+  " nginx conf
+  NeoBundle 'nginx.vim'
+
+  " markdown
+  NeoBundle 'tpope/vim-markdown'
+
+  " coffee script
+  NeoBundle 'kchmck/vim-coffee-script'
+
+  " python
+  NeoBundle 'yuroyoro/vim-python'
+
+  " scala
+  NeoBundle 'yuroyoro/vim-scala'
+
+  " clojure
+  NeoBundle 'jondistad/vimclojure'
+
+  " ghc-mod
+  NeoBundle 'eagletmt/ghcmod-vim'
+
+  " syntax checking plugins exist for eruby, haml, html, javascript, php, python, ruby and sass.
+  NeoBundle 'scrooloose/syntastic'
+" }}}
+
+" Buffer {{{
+
+  " NERDTree : ツリー型エクスプローラ
+  NeoBundle 'The-NERD-tree'
+
+  " vtreeexplorer.vim : ツリー状にファイルやディレクトリの一覧を表示
+  NeoBundle 'vtreeexplorer'
+" }}}
+
+" vimdoc 日本語
+NeoBundle 'yuroyoro/vimdoc_ja'
+
+NeoBundle 'taichouchou2/alpaca_powertabline'
+NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
+
+
+filetype plugin indent on

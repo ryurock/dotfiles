@@ -17,6 +17,7 @@ NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
+NeoBundle "Shougo/neosnippet-snippets"
 NeoBundle 'Shougo/vimfiler.vim'
 
 " 自動閉じタグ
@@ -30,6 +31,9 @@ NeoBundle 'yuroyoro/smooth_scroll.vim'
 
 " vim-ruby : VimでRubyを扱う際の最も基本的な拡張機能
 NeoBundle 'vim-ruby/vim-ruby'
+
+" vim-slim : Ruby slimようのあれ
+NeoBundle 'slim-template/vim-slim'
 
 " rails.vim : rails的なアレ
 NeoBundle 'tpope/vim-rails'

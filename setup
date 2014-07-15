@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+#
+set -e
+
+CMDNAME=`basename $0`
+DOTFILES_REPO="FALSE"
+while getopts d: OPT
+do
+  case $OPT in
+    "d" ) DOTFILES_REPO="$OPTARG" ;;
+      * ) echo "Usage: $CMDNAME [-d dotfiles git repo url]" 1>&2
+          exit 1 ;;
+  esac
+done
+
+init() {
+    # OS from OSX 
+    if [ `uname` = "Darwin" ]; then
+        # XCode Commandline Tool Install
+        command=$(clang --help | grep -c "clang LLVM compiler")
+        if ! [ "${command}" -eq 1 ]; then
+            echo "[Install] not installed. XCode Commandline Tools."
+            exit
+        fi
+
+        if ! [ "${DOTFILES_REPO}" = "FALSE" ]; then
+            git clone ${DOTFILES_REPO} ~/dotfiles
+
+            # .bash_profile settings
+            if ! [ -a ~/.bash_profile ]; then
+                ln -s dotfiles/.bash/basic.sh ~/.bash_profile
+            fi
+
+            if ! [ -a ~/.vim ]; then
+                mkdir -p ~/.vim/bundle
+                git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+            fi
+
+            if ! [ -a ~/.vimrc ]; then
+                ln -s dotfiles/.vimrc ~/.vimrc
+            fi
+        fi
+        # Homebrew install
+        if ! which brew >/dev/null 2>&1; then
+            echo "[Install] dependency Homebrew"
+            ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+            command_ver=$(brew --version)
+            command=$(which brew)
+            brew doctor
+            echo "[Install] installed Homebrew. path : ${comand} version : ${command_ver}"
+            brew bundle
+        else
+            echo "[Install] Already exists dependency Homebrew"
+        fi
+
+    fi
+}
+
+init

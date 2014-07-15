@@ -39,6 +39,10 @@ init() {
             if ! [ -a ~/.vimrc ]; then
                 ln -s dotfiles/.vimrc ~/.vimrc
             fi
+
+            if ! [ -a ~/.gitconfig ]; then
+                ln -s dotfiles/.gitconfig ~/.gitconfig
+            fi
         fi
         # Homebrew install
         if ! which brew >/dev/null 2>&1; then

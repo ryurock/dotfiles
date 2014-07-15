@@ -47,7 +47,8 @@ init() {
             command_ver=$(brew --version)
             command=$(which brew)
             brew doctor
-            echo "[Install] installed Homebrew. path : ${comand} version : ${command_ver}"
+            echo "[Install] installed Homebrew. path : ${command} version : ${command_ver}"
+            cd ~/dotfiles
             brew bundle
         else
             echo "[Install] Already exists dependency Homebrew"

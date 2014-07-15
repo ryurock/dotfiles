@@ -1,7 +1,3 @@
-#!/usr/bin/env bash
-#
-set -e
-
 alias ll="ls -l"
 alias ls='ls -G'
 export LSCOLORS=gxfxcxdxbxegedabagacad

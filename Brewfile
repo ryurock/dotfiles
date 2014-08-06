@@ -35,3 +35,5 @@ cask install google-japanese-ime
 cask install sourcetree
 cask install Genymotion
 cask install shiftit
+cask install skitch
+cask install cyberduck

@@ -37,3 +37,7 @@ cask install Genymotion
 cask install shiftit
 cask install skitch
 cask install cyberduck
+cask install iterm2
+cask install cyberduck
+cask install skype
+

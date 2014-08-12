@@ -2,6 +2,7 @@ update
 upgrade
 
 tap sanemat/font
+tap homebrew/binary
 
 install caskroom/cask/brew-cask
 install git
@@ -14,6 +15,7 @@ install jq
 install openssl
 install ricty
 install android-sdk
+install packer
 
 cask install appcleaner
 cask install karabiner

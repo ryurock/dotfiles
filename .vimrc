@@ -6,7 +6,6 @@
  source ~/dotfiles/.vimrc.apperance
  source ~/dotfiles/.vimrc.completion
 
-filetype plugin indent on     " required!
 filetype indent on
 syntax on
 

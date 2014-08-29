@@ -93,9 +93,8 @@ NeoBundle 'errormarker.vim'
 
 " vimdoc 日本語
 NeoBundle 'yuroyoro/vimdoc_ja'
-
-NeoBundle 'taichouchou2/alpaca_powertabline'
-NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
+" lightline (ステータスライン強化)
+NeoBundle 'itchyny/lightline.vim'
 
 
 filetype plugin indent on

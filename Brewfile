@@ -16,6 +16,7 @@ install openssl
 install ricty
 install android-sdk
 install packer
+install libxslt
 
 cask install appcleaner
 cask install karabiner

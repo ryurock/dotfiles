@@ -17,6 +17,7 @@ install ricty
 install android-sdk
 install packer
 install libxslt
+install fswatch
 
 cask install appcleaner
 cask install karabiner

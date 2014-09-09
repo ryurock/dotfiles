@@ -47,8 +47,8 @@ NeoBundle 'taglist.vim'
 " エラーがある場所をhilight
 NeoBundle 'errormarker.vim'
 
-" molokai カラースキーム
-NeoBundle 'tomasr/molokai'
+" monokai カラースキーム
+NeoBundle 'w0ng/vim-hybrid'
 
 " Syntax {{{
   " haml

@@ -35,3 +35,5 @@ set encoding=utf-8
 set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
 colorscheme  hybrid "カラースキーマはhybrid
 set modifiable " QuickFixListのプレビューを利用できるにする
+" modifiableで編集可能にする
+set write

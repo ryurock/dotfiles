@@ -13,6 +13,9 @@ cnoremap <Up>  <C-p>
 cnoremap <C-n> <Down>
 cnoremap <Down>  <C-n>
 
+noremap <C-b> :Unite buffer<CR>
+noremap <C-F> :Unite file<CR>
+
 " 補完にAutoComplPopを使う
 " source ~/dotfiles/.vimrc.completion.autocomplpop
 

@@ -38,6 +38,9 @@ NeoBundle 'slim-template/vim-slim'
 " rails.vim : rails的なアレ
 NeoBundle 'tpope/vim-rails'
 
+" PHP Xdebugをつかえるやつ
+NeoBundle 'joonty/vdebug'
+
 " Pydiction : Python用の入力補完
 NeoBundle 'Pydiction'
 

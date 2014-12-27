@@ -4,6 +4,8 @@ set ruler
 "自動的に QuickFix リストを表示する
 autocmd QuickfixCmdPost make,grep,grepadd,vimgrep,vimgrepadd cwin
 autocmd QuickfixCmdPost lmake,lgrep,lgrepadd,lvimgrep,lvimgrepadd lwin
+" ステータスラインに文字コードと改行文字を表示する
+set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
 
 if !has('gui_running')
   set t_Co=256

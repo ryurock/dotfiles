@@ -20,3 +20,6 @@ if [ -d ~/dotfiles/.zsh/ ] ; then
   done
 fi
 
+export PYENV_ROOT="$HOME/.pyenv"
+eval "$(pyenv init -)"
+export PATH="$HOME/.pyenv/bin:$PATH"

@@ -31,6 +31,14 @@ init() {
                 ln -s dotfiles/.bash/basic.sh ~/.bash_profile
             fi
 
+            # .zshrc settings
+            if ! [ -a ~/.zshrc ]; then
+                ln -s dotfiles/.zsh/basic.sh ~/.zshrc
+                git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+                git cloe https://github.com/mbadolato/iTerm2-Color-Schemes.git "${ZDOTDIR:-$HOME}/.iTerm2-Color-Schemes"
+                chsh -s /bin/zsh
+            fi
+
             if ! [ -a ~/.vim ]; then
                 mkdir -p ~/.vim/bundle
                 git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
@@ -53,7 +61,7 @@ init() {
             brew doctor
             echo "[Install] installed Homebrew. path : ${command} version : ${command_ver}"
             cd ~/dotfiles
-            brew bundle
+            sh brewfile.sh
         else
             echo "[Install] Already exists dependency Homebrew"
         fi

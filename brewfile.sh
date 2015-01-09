@@ -47,3 +47,5 @@ brew cask install cyberduck
 brew cask install iterm2
 brew cask install cyberduck
 brew cask install skype
+brew cask install haroopad
+brew cask install macwinzipper

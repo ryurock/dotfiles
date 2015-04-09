@@ -101,6 +101,8 @@ NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'yuroyoro/vimdoc_ja'
 " lightline (ステータスライン強化)
 NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'airblade/vim-gitgutter'
 " ligthlineのカラースキームをhybridに
 NeoBundle 'cocopon/lightline-hybrid.vim'
 

@@ -32,8 +32,10 @@ set clipboard=unnamed
 filetype plugin on
 
 set encoding=utf-8
-set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+set fileencodings=utf-8,euc-jp,sjis,iso-2022-jp
 colorscheme  hybrid "カラースキーマはhybrid
 set modifiable " QuickFixListのプレビューを利用できるにする
 " modifiableで編集可能にする
 set write
+" Exploreは常にtree表示で
+let g:netrw_liststyle = 3

@@ -1,12 +1,12 @@
 "-------------------------------------------------------------------------------
-" 表示 Apperance
+" 表示 Appearance
 "-------------------------------------------------------------------------------
 set showmatch         " 括弧の対応をハイライト
 set number            " 行番号表示
 set list              " 不可視文字表示
 set listchars=tab:>.,trail:_,extends:>,precedes:< " 不可視文字の表示形式
 set display=uhex      " 印字不可能文字を16進数で表示
-
+set laststatus=2      "" ステータスラインを常に表示（編集中のファイル名が常に確認できるようになる）
 " 全角スペースの表示
 highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
 match ZenkakuSpace /　/

@@ -7,8 +7,6 @@ set noswapfile                   " スワップファイル作らない
 set lcs=tab:>.,trail:_,extends:\
 set list
 highlight SpecialKey cterm=NONE ctermfg=7 guifg=7
-highlight JpSpace cterm=underline ctermfg=7 guifg=7
-au BufRead,BufNew * match JpSpace /　/
 set hidden                       " 編集中でも他のファイルを開けるようにする
 set backspace=indent,eol,start   " バックスペースでなんでも消せるように
 set formatoptions=lmoq           " テキスト整形オプション，マルチバイト系を追加
@@ -17,13 +15,12 @@ set whichwrap=b,s,h,l,<,>,[,]    " カーソルを行頭、行末で止まらな
 set showcmd                      " コマンドをステータス行に表示
 set showmode                     " 現在のモードを表示
 set viminfo='50,<1000,s100,\"50  " viminfoファイルの設定"'"
-
+" タブ空白変換
+set expandtab
+" タブ幅
+set tabstop=2
 " OSのクリップボードを使用する
 set clipboard+=unnamed
-" ターミナルでマウスを使用できるようにする
-set mouse=a
-set guioptions+=a
-set ttymouse=xterm2
 
 "ヤンクした文字は、システムのクリップボードに入れる"
 set clipboard=unnamed
@@ -32,8 +29,11 @@ set clipboard=unnamed
 filetype plugin on
 
 set encoding=utf-8
+<<<<<<< HEAD
 set fileencodings=utf-8,euc-jp,sjis,iso-2022-jp
 colorscheme  hybrid "カラースキーマはhybrid
+set fileencodings=utf-8,euc-jp,iso-20220-jp,sjis,cp932,default,latin
+set fileformats=unix,dos,mac
 set modifiable " QuickFixListのプレビューを利用できるにする
 " modifiableで編集可能にする
 set write

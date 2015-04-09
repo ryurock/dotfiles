@@ -29,7 +29,6 @@ set clipboard=unnamed
 filetype plugin on
 
 set encoding=utf-8
-<<<<<<< HEAD
 set fileencodings=utf-8,euc-jp,sjis,iso-2022-jp
 colorscheme  hybrid "カラースキーマはhybrid
 set fileencodings=utf-8,euc-jp,iso-20220-jp,sjis,cp932,default,latin

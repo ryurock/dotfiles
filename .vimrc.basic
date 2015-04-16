@@ -35,3 +35,5 @@ set fileformats=unix,dos,mac
 set modifiable " QuickFixListのプレビューを利用できるにする
 " modifiableで編集可能にする
 set write
+" netrwは常にtree view
+let g:netrw_liststyle = 3

@@ -35,7 +35,7 @@ init() {
             if ! [ -a ~/.zshrc ]; then
                 ln -s dotfiles/.zsh/basic.sh ~/.zshrc
                 git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-                git cloe https://github.com/mbadolato/iTerm2-Color-Schemes.git "${ZDOTDIR:-$HOME}/.iTerm2-Color-Schemes"
+                git clone https://github.com/mbadolato/iTerm2-Color-Schemes.git "${ZDOTDIR:-$HOME}/.iTerm2-Color-Schemes"
                 chsh -s /bin/zsh
             fi
 

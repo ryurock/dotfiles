@@ -55,7 +55,7 @@ init() {
         # Homebrew install
         if ! which brew >/dev/null 2>&1; then
             echo "[Install] dependency Homebrew"
-            ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+            ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
             command_ver=$(brew --version)
             command=$(which brew)
             brew doctor

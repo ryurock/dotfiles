@@ -21,5 +21,6 @@ if [ -d ~/dotfiles/.zsh/ ] ; then
 fi
 
 export PYENV_ROOT="$HOME/.pyenv"
-eval "$(pyenv init -)"
-export PATH="$HOME/.pyenv/bin:$PATH"
+export PATH="$PYENV_ROOT:$PATH"
+if which pyenv > /dev/null; then eval "$(pyenv init - zsh)"; fi
+

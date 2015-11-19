@@ -1,72 +1,125 @@
 #!/usr/bin/env bash
-#
-set -e
 
-CMDNAME=`basename $0`
-DOTFILES_REPO="FALSE"
-while getopts d: OPT
+voiceverbose=0
+
+while getopts :v OPT
 do
   case $OPT in
-    "d" ) DOTFILES_REPO="$OPTARG" ;;
-      * ) echo "Usage: $CMDNAME [-d dotfiles git repo url]" 1>&2
-          exit 1 ;;
+    v ) voiceverbose=1 ;;
+    * ) echo "Usage: $CMDNAME [-v voiceverbose]" 1>&2
+        exit 1 ;;
   esac
 done
 
+#
+# voice and stdout method
+#
+vecho() {
+    if [ ${voiceverbose} = 1 ]; then
+        return
+    fi
+
+    echo $1$2
+    say -v Alex $2
+}
+
+#
+# initialize
+#
 init() {
     # OS from OSX 
-    if [ `uname` = "Darwin" ]; then
-        # XCode Commandline Tool Install
-        command=$(clang --help | grep -c "clang LLVM compiler")
-        if ! [ "${command}" -eq 1 ]; then
-            echo "[Install] not installed. XCode Commandline Tools."
-            exit
-        fi
+    if [ `uname` != "Darwin" ]; then
+        echo "[Failed] this installer OSX only."
+        exit
+    fi
 
-        if ! [ "${DOTFILES_REPO}" = "FALSE" ]; then
-            git clone ${DOTFILES_REPO} ~/dotfiles
+    vecho "[Alex]" "Welcome to app development.This that are running this command is the first step that you have to participate in the development of the now this apps. Let's first learn how this apps while speaking with me is going to the development and use any tool "
 
-            # .bash_profile settings
-            if ! [ -a ~/.bash_profile ]; then
-                ln -s dotfiles/.bash/basic.sh ~/.bash_profile
-            fi
-
-            # .zshrc settings
-            if ! [ -a ~/.zshrc ]; then
-                ln -s dotfiles/.zsh/basic.sh ~/.zshrc
-                git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-                git clone https://github.com/mbadolato/iTerm2-Color-Schemes.git "${ZDOTDIR:-$HOME}/.iTerm2-Color-Schemes"
-                chsh -s /bin/zsh
-            fi
-
-            if ! [ -a ~/.vim ]; then
-                mkdir -p ~/.vim/bundle
-                git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
-            fi
-
-            if ! [ -a ~/.vimrc ]; then
-                ln -s dotfiles/.vimrc ~/.vimrc
-            fi
-
-            if ! [ -a ~/.gitconfig ]; then
-                ln -s dotfiles/.gitconfig ~/.gitconfig
-            fi
-        fi
-        # Homebrew install
-        if ! which brew >/dev/null 2>&1; then
-            echo "[Install] dependency Homebrew"
-            ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-            command_ver=$(brew --version)
-            command=$(which brew)
-            brew doctor
-            echo "[Install] installed Homebrew. path : ${command} version : ${command_ver}"
-            cd ~/dotfiles
-            sh brewfile.sh
-        else
-            echo "[Install] Already exists dependency Homebrew"
-        fi
-
+    # XCode Commandline Tool Install
+    command=$(clang --help | grep -c "clang LLVM compiler")
+    if ! [ "${command}" -eq 1 ]; then
+        echo "[Install] not installed. XCode Commandline Tools."
+        exit 1
+    else
+        echo "[Install] Already exists dependecy XCode Commandline Tools."
     fi
 }
 
+#
+# homebrew setup
+#
+brewSetup() {
+    vecho "[Alex]" "First to homebrew is I'll make sure you have installed"
+    # Homebrew install
+    if ! which brew >/dev/null 2>&1; then
+        echo "[Install] dependency Homebrew"
+        ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        command_ver=$(brew --version)
+        command=$(which brew)
+        brew doctor
+        echo "[Install] installed Homebrew. path : ${command} version : ${command_ver}"
+    else
+        echo "[Install] Already exists dependency Homebrew"
+    fi
+}
+
+#
+# install Requirements Tools
+#
+installRequireTools() {
+    python_version="2.7.10"
+    vecho "[Alex]" "dependecy comanndline git. try install git"
+    brew install git || true
+    vecho "[Alex]" "dependecy comanndline pyenv. try install pyenv"
+    brew install pyenv || true
+
+    if [ -e ~/.zshrc ]; then
+        vecho "[Alex]" "configration python pyenv added zshrc"
+        command=$(cat ~/.zshrc| grep -c 'pyenv init')
+        if [ "${command}" = 0 ]; then
+            echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
+            echo 'if which pyenv > /dev/null; then eval "$(pyenv init - zsh)"; fi' >> ~/.zshrc
+            echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.zshrc
+            pyenv install "${python_version}"
+            pyenv global "${python_version}"
+            pyenv rehash
+            source ~/.zshrc
+        fi
+
+    fi
+
+    if ! [ -e ~/.bash_profile ]; then
+        touch ~/.bash_profile
+    fi
+
+    vecho "[Alex]" "configration python pyenv added bash_profile"
+    command=$(cat ~/.bash_profile| grep -c 'pyenv init')
+    if [ "${command}" = 0 ]; then
+        echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
+        echo 'if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi' >> ~/.bash_profile
+        echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bash_profile
+        pyenv install "${python_version}"
+        pyenv global "${python_version}"
+        pyenv rehash
+        source ~/.bash_profile
+    fi
+
+    command=$(pyenv versions | awk '/"${python_version}"/{print $2}')
+    if [ ! "${command}" =  "${python_version}" ]; then
+        pyenv install ${python_version}
+        pyenv global ${python_version}
+        pyenv rehash
+    fi
+
+    vecho "[Alex]" "dependecy comanndline ansible. try install ansible"
+    brew install ansible || true
+}
+
+#
+# main
+#
+
 init
+brewSetup
+installRequireTools
+

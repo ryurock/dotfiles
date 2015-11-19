@@ -104,8 +104,8 @@ installRequireTools() {
         source ~/.bash_profile
     fi
 
-    command=$(pyenv versions | awk '/"${python_version}"/{print $2}')
-    if [ ! "${command}" =  "${python_version}" ]; then
+    command=$(pyenv versions | grep -c "${python_version}")
+    if [ "${command}" = 0 ]; then
         pyenv install ${python_version}
         pyenv global ${python_version}
         pyenv rehash

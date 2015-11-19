@@ -4,3 +4,6 @@
 [submodule "dircolors-solarized"]
 	path = dircolors-solarized
 	url = https://github.com/seebi/dircolors-solarized.git
+[submodule "ansible-playbooks"]
+	path = ansible-playbooks
+	url = https://github.com/ryurock/ansible-playbooks.git

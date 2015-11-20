@@ -81,16 +81,19 @@ pythonSetup() {
 
     grepWord="pyenv init"
 
-    if [ -e ~/.zshrc ]; then
-        vecho "[Alex]" "configration python pyenv added zshrc"
-        if [ `cat ~/.zshrc| grep -c "${grepWord}"` -eq 0 ]; then
-            echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
-            echo 'if which pyenv > /dev/null; then eval "$(pyenv init - zsh)"; fi' >> ~/.zshrc
-            echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.zshrc
-            source ~/.zshrc
-        fi
-
+    #どのバージョンかはわからないけれどもOSXのデフォルトのshellがzshになっているため追加する
+    if ! [ -e ~/.zshrc ]; then
+        touch ~/.zshrc
     fi
+
+    if [ `cat ~/.zshrc| grep -c "${grepWord}"` -eq 0 ]; then
+        vecho "[Alex]" "configration python pyenv added zshrc"
+        echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
+        echo 'if which pyenv > /dev/null; then eval "$(pyenv init - zsh)"; fi' >> ~/.zshrc
+        echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.zshrc
+        source ~/.zshrc
+    fi
+
 
     if ! [ -e ~/.bash_profile ]; then
         touch ~/.bash_profile
@@ -122,11 +125,9 @@ ansibleSetup() {
     fi
 
     grepWord="ANSIBLE_INVENTORY"
-    if [ -e ~/.zshrc ]; then
-        if [ `cat ~/.zshrc | grep -c "${grepWord}"` -eq 0 ]; then
-            vecho "[Alex]" "configration ansible added zshrc"
-            echo "export ansible_inventory=~/ansible_hosts" >> ~/.zshrc
-        fi
+    if [ `cat ~/.zshrc | grep -c "${grepWord}"` -eq 0 ]; then
+        vecho "[Alex]" "configration ansible added zshrc"
+        echo "export ansible_inventory=~/ansible_hosts" >> ~/.zshrc
     fi
 
     if [ `cat ~/.bash_profile | grep -c "${grepWord}"` -eq 0 ]; then

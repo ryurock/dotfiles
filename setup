@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+set -e
 voiceverbose=0
 
 while getopts :v OPT
@@ -36,8 +37,7 @@ init() {
     vecho "[Alex]" "Welcome to app development.This that are running this command is the first step that you have to participate in the development of the now this apps. Let's first learn how this apps while speaking with me is going to the development and use any tool "
 
     # XCode Commandline Tool Install
-    command=$(clang --help | grep -c "clang LLVM compiler")
-    if ! [ "${command}" -eq 1 ]; then
+    if ! [ `clang --help | grep -c "clang LLVM compiler"` -eq 1 ]; then
         echo "[Install] not installed. XCode Commandline Tools."
         exit 1
     else
@@ -64,19 +64,19 @@ brewSetup() {
 }
 
 #
-# install Requirements Tools
+# python setup
 #
-installRequireTools() {
+pythonSetup() {
     python_version="2.7.10"
     vecho "[Alex]" "dependecy comanndline git. try install git"
     brew install git || true
     vecho "[Alex]" "dependecy comanndline pyenv. try install pyenv"
     brew install pyenv || true
+    grepWord="pyenv init"
 
     if [ -e ~/.zshrc ]; then
         vecho "[Alex]" "configration python pyenv added zshrc"
-        command=$(cat ~/.zshrc| grep -c 'pyenv init')
-        if [ "${command}" = 0 ]; then
+        if [ `cat ~/.zshrc| grep -c "${grepWord}"` -eq 0 ]; then
             echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
             echo 'if which pyenv > /dev/null; then eval "$(pyenv init - zsh)"; fi' >> ~/.zshrc
             echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.zshrc
@@ -92,9 +92,8 @@ installRequireTools() {
         touch ~/.bash_profile
     fi
 
-    vecho "[Alex]" "configration python pyenv added bash_profile"
-    command=$(cat ~/.bash_profile| grep -c 'pyenv init')
-    if [ "${command}" = 0 ]; then
+    if [ `cat ~/.bash_profile| grep -c "${grepWord}"` -eq 0 ]; then
+        vecho "[Alex]" "configration python pyenv added bash_profile"
         echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
         echo 'if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi' >> ~/.bash_profile
         echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bash_profile
@@ -104,15 +103,41 @@ installRequireTools() {
         source ~/.bash_profile
     fi
 
-    command=$(pyenv versions | grep -c "${python_version}")
-    if [ "${command}" = 0 ]; then
+    if [ `pyenv versions | grep -c "${python_version}"` -eq 0 ]; then
         pyenv install ${python_version}
         pyenv global ${python_version}
         pyenv rehash
     fi
 
+}
+
+#
+# setup ansible
+#
+ansibleSetup() {
+    vecho "[Alex]" "It will do the installation because it requires some pip module in ansible of dependency"
+    sudo easy_install pip
+    sudo pip install paramiko PyYAML Jinja2 httplib2 six
     vecho "[Alex]" "dependecy comanndline ansible. try install ansible"
     brew install ansible || true
+
+    if ! [ -e ~/ansible_hosts ]; then
+        vecho "[Alex]" "configration ansible added ansible_hosts"
+        echo "127.0.0.1" >> ~/ansible_hosts
+    fi
+
+    grepWord="ANSIBLE_INVENTORY"
+    if [ -e ~/.zshrc ]; then
+        if [ `cat ~/.zshrc | grep -c "${grepWord}"` -eq 0 ]; then
+            vecho "[Alex]" "configration ansible added zshrc"
+            echo "export ansible_inventory=~/ansible_hosts" >> ~/.zshrc
+        fi
+    fi
+
+    if [ `cat ~/.bash_profile | grep -c "${grepWord}"` -eq 0 ]; then
+        vecho "[Alex]" "configration ansible added bash_profile"
+        echo "export ANSIBLE_INVENTORY=~/ansible_hosts" >> ~/.bash_profile
+    fi
 }
 
 #
@@ -121,5 +146,5 @@ installRequireTools() {
 
 init
 brewSetup
-installRequireTools
-
+pythonSetup
+ansibleSetup

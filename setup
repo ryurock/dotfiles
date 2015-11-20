@@ -67,11 +67,18 @@ brewSetup() {
 # python setup
 #
 pythonSetup() {
-    python_version="2.7.10"
     vecho "[Alex]" "dependecy comanndline git. try install git"
     brew install git || true
+
     vecho "[Alex]" "dependecy comanndline pyenv. try install pyenv"
     brew install pyenv || true
+    python_version="2.7.10"
+    if [ `pyenv versions | grep -c "${python_version}"` -eq 0 ]; then
+        pyenv install ${python_version}
+        pyenv global ${python_version}
+        pyenv rehash
+    fi
+
     grepWord="pyenv init"
 
     if [ -e ~/.zshrc ]; then
@@ -80,9 +87,6 @@ pythonSetup() {
             echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
             echo 'if which pyenv > /dev/null; then eval "$(pyenv init - zsh)"; fi' >> ~/.zshrc
             echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.zshrc
-            pyenv install "${python_version}"
-            pyenv global "${python_version}"
-            pyenv rehash
             source ~/.zshrc
         fi
 
@@ -97,16 +101,7 @@ pythonSetup() {
         echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
         echo 'if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi' >> ~/.bash_profile
         echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bash_profile
-        pyenv install "${python_version}"
-        pyenv global "${python_version}"
-        pyenv rehash
         source ~/.bash_profile
-    fi
-
-    if [ `pyenv versions | grep -c "${python_version}"` -eq 0 ]; then
-        pyenv install ${python_version}
-        pyenv global ${python_version}
-        pyenv rehash
     fi
 
 }

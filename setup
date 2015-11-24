@@ -2,7 +2,6 @@
 
 set -e
 voiceverbose=0
-
 while getopts :v OPT
 do
   case $OPT in
@@ -36,12 +35,38 @@ init() {
 
     vecho "[Alex]" "Welcome to app development.This that are running this command is the first step that you have to participate in the development of the now this apps. Let's first learn how this apps while speaking with me is going to the development and use any tool "
 
+    # Chcek XCode installed
+    if ! [ -e /Applications/Xcode.app ]; then
+        echo "[Install] not installed."
+        echo "get AppStore. Download App XCode"
+        exit 1
+    else
+        echo "[Install] Already exists dependecy XCode"
+    fi
+
     # XCode Commandline Tool Install
     if ! [ `clang --help | grep -c "clang LLVM compiler"` -eq 1 ]; then
-        echo "[Install] not installed. XCode Commandline Tools."
+        echo "[Install] not installed. XCode Commandline Tools. open install notify"
+        xcode-select --install
         exit 1
     else
         echo "[Install] Already exists dependecy XCode Commandline Tools."
+    fi
+
+    vecho "[Alex]" "dependecy comanndline git. try install git"
+    brew install git || true
+}
+
+#
+# create shell dotfile
+#
+create_shell_dotfile() {
+    shell_dotfile=".zshrc"
+    if [ `echo $SHELL | grep -c "bash"` -eq 1 ]; then
+        shell_dotfile="$HOME/.bash_profile"
+    fi
+    if ! [ -e $HOME"/${shell_dotfile}" ]; then
+        touch $HOME"/${shell_dotfile}"
     fi
 }
 
@@ -67,8 +92,18 @@ brewSetup() {
 # python setup
 #
 pythonSetup() {
-    vecho "[Alex]" "dependecy comanndline git. try install git"
-    brew install git || true
+    create_shell_dotfile
+    grepWord="pyenv"
+    if [ `brew list | grep -c "${grepWord}"` -eq 0 ]; then
+        vecho "[Alex]" "configration python pyenv added $HOME/${shell_dotfile}"
+        echo 'export PYENV_ROOT="$HOME/.pyenv"' >> $HOME"/${shell_dotfile}"
+        echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> $HOME"/${shell_dotfile}"
+        echo 'if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi' >> $HOME"/${shell_dotfile}"
+        if [ `echo $SHELL | grep -c "zsh"` -eq 1 ]; then
+            sed -e 's/pyenv init -/pyenv init - zsh/g' $HOME"/${shell_dotfile}" > $HOME"/${shell_dotfile}"
+        fi
+
+    fi
 
     vecho "[Alex]" "dependecy comanndline pyenv. try install pyenv"
     brew install pyenv || true
@@ -78,35 +113,6 @@ pythonSetup() {
         pyenv global ${python_version}
         pyenv rehash
     fi
-
-    grepWord="pyenv init"
-
-    #どのバージョンかはわからないけれどもOSXのデフォルトのshellがzshになっているため追加する
-    if ! [ -e ~/.zshrc ]; then
-        touch ~/.zshrc
-    fi
-
-    if [ `cat ~/.zshrc| grep -c "${grepWord}"` -eq 0 ]; then
-        vecho "[Alex]" "configration python pyenv added zshrc"
-        echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
-        echo 'if which pyenv > /dev/null; then eval "$(pyenv init - zsh)"; fi' >> ~/.zshrc
-        echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.zshrc
-        source ~/.zshrc
-    fi
-
-
-    if ! [ -e ~/.bash_profile ]; then
-        touch ~/.bash_profile
-    fi
-
-    if [ `cat ~/.bash_profile| grep -c "${grepWord}"` -eq 0 ]; then
-        vecho "[Alex]" "configration python pyenv added bash_profile"
-        echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
-        echo 'if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi' >> ~/.bash_profile
-        echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bash_profile
-        source ~/.bash_profile
-    fi
-
 }
 
 #
@@ -124,15 +130,11 @@ ansibleSetup() {
         echo "127.0.0.1" >> ~/ansible_hosts
     fi
 
-    grepWord="ANSIBLE_INVENTORY"
-    if [ `cat ~/.zshrc | grep -c "${grepWord}"` -eq 0 ]; then
-        vecho "[Alex]" "configration ansible added zshrc"
-        echo "export ansible_inventory=~/ansible_hosts" >> ~/.zshrc
-    fi
-
-    if [ `cat ~/.bash_profile | grep -c "${grepWord}"` -eq 0 ]; then
-        vecho "[Alex]" "configration ansible added bash_profile"
-        echo "export ANSIBLE_INVENTORY=~/ansible_hosts" >> ~/.bash_profile
+    create_shell_dotfile
+    grepWord="export ANSIBLE_INVENTORY"
+    if [ `cat $HOME"/${shell_dotfile}" | grep -c "${grepWord}"` -eq 0 ]; then
+        vecho "[Alex]" "configration ansible added $HOME${shell_dotfile}"
+        echo "export ANSIBLE_INVENTORY=~/ansible_hosts" >> $HOME"${shell_dotfile}"
     fi
 }
 

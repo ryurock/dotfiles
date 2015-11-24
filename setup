@@ -38,7 +38,7 @@ init() {
     # Chcek XCode installed
     if ! [ -e /Applications/Xcode.app ]; then
         echo "[Install] not installed."
-        echo "get AppStore. Download App XCode"
+        open -a "/Applications/Safari.app" https://itunes.apple.com/jp/app/xcode/id497799835?mt=12
         exit 1
     else
         echo "[Install] Already exists dependecy XCode"
@@ -86,6 +86,14 @@ brewSetup() {
     else
         echo "[Install] Already exists dependency Homebrew"
     fi
+
+    create_shell_dotfile
+    grepWord="export HOMEBREW_CASK_OPTS"
+    if [ `cat $HOME"/${shell_dotfile}" | grep -c "${grepWord}"` -eq 0 ]; then
+        vecho "[Alex]" "configration homebrew Appliction Path. added $HOME/${shell_dotfile}"
+        echo 'export HOMEBREW_CASK_OPTS="--appdir=/Applications"' >> $HOME"/${shell_dotfile}"
+    fi
+
 }
 
 #
@@ -133,8 +141,8 @@ ansibleSetup() {
     create_shell_dotfile
     grepWord="export ANSIBLE_INVENTORY"
     if [ `cat $HOME"/${shell_dotfile}" | grep -c "${grepWord}"` -eq 0 ]; then
-        vecho "[Alex]" "configration ansible added $HOME${shell_dotfile}"
-        echo "export ANSIBLE_INVENTORY=~/ansible_hosts" >> $HOME"${shell_dotfile}"
+        vecho "[Alex]" "configration ansible added $HOME/${shell_dotfile}"
+        echo "export ANSIBLE_INVENTORY=~/ansible_hosts" >> $HOME"/${shell_dotfile}"
     fi
 }
 

@@ -186,6 +186,8 @@ configure-aws: ## awsの設定
 .PHONY: configure-git
 configure-git: ## gitの設定
 	cp .gitconfig $(HOME)/.gitconfig
+	read username && git config --global user.name $$username
+	read email && git config --global user.email $$email
 
 .PHONY: configure-nodejs-version-manager
 configure-nodejs-version-manager: ## Configure NodeJS version Manager

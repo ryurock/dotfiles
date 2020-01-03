@@ -21,6 +21,7 @@ install: ## 初期セットアップを実行する
 	make configure-nodejs-version-manager
 	make configure-ruby-version-manager
 	make add-programing-fonts
+	make configure-vscode
 	make configure-avg-antivirus
 
 .PHONY: check-target-os
@@ -216,6 +217,14 @@ add-programing-fonts: ## add Programing Fonts for Ricty
 	curl -o $(HOME)/Downloads/RictyDiminished/RictyDiminished-Regular.ttf https://raw.githubusercontent.com/edihbrandon/RictyDiminished/master/RictyDiminished-Regular.ttf
 	curl -o $(HOME)/Downloads/RictyDiminished/RictyDiminished-Bold.ttf https://raw.githubusercontent.com/edihbrandon/RictyDiminished/master/RictyDiminished-Bold.ttf
 	mv $(HOME)/Downloads/RictyDiminished/ /Library/Fonts/
+
+.PHONY: configure-vscode
+configure-vscode:
+	cp .vscode/keybinding.json $(HOME)/Library/Application\ Support/Code/User/
+	cp .vscode/settings.json $(HOME)/Library/Application\ Support/Code/User/
+	cat .vscode/VSCodeExtFile | while read line ; do \
+		code --install-extension $$line; \
+	done;
 
 .PHONY: configure-avg-antivirus
 configure-avg-antivirus:

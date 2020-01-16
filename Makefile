@@ -105,7 +105,9 @@ install-apps-for-brew: ## apps install for HomeBrew
 	'appcleaner' \
 	'spectacle' \
 	'google-cloud-sdk' \
-	'avg-antivirus'
+	'avg-antivirus' \
+	'ngrok' \
+	'dropbox' || true
 
 # optional このディレクトリにBrewfileを配置していると自動的に追加でインストールしてくれる
 .PHONY: bundle-brewfile

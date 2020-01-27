@@ -91,7 +91,8 @@ install-apps-for-brew: ## apps install for HomeBrew
 	'freetype' \
 	'pkg-config' \
 	'libyaml' \
-	'libssh' || true
+	'libssh' \
+	'direnv' || true
 
 	brew cask install 'google-japanese-ime' \
 	'google-chrome' \
@@ -107,7 +108,8 @@ install-apps-for-brew: ## apps install for HomeBrew
 	'google-cloud-sdk' \
 	'avg-antivirus' \
 	'ngrok' \
-	'dropbox' || true
+	'dropbox' \
+	'Kindle' || true
 
 # optional このディレクトリにBrewfileを配置していると自動的に追加でインストールしてくれる
 .PHONY: bundle-brewfile

@@ -8,6 +8,7 @@ install: ## 初期セットアップを実行する
 	make modify-mac-defaults
 	make install-xcode-commandline-tools
 	make configure-xcode
+	make configure-git
 	make disable-gatekeeper
 	make add-zshrc
 	make install-homebrew
@@ -42,7 +43,7 @@ configure-xcode: ## XCodeの初期設定
 	defaults write com.apple.dt.Xcode IDEBuildOperationMaxNumberOfConcurrentCompileTasks $$core_num
 
 .PHONY: disable-gatekeeper
-disable-gatekeeper:　## MacのGateKeeperをOFF
+disable-gatekeeper: ## MacのGateKeeperをOFF
 	@echo "|======================================================================|"
 	@echo "|    MacのGateKeeperをOFFにします。これはサードパーティ製品で          |"
 	@echo "|    AppStoreに登録されていないアプリを許可するために必要です          |"

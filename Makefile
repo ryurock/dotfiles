@@ -201,6 +201,11 @@ configure-ssh:
 	chmod 700 $(HOME)/.ssh
 	read path && chmod 600 $$path && cp $$path $(HOME)/.ssh/
 
+.PHONY: configure-github-ssh
+configure-github-ssh:
+	sh ./github_ssh_registration.sh
+
+
 .PHONY: configure-nodejs-version-manager
 configure-nodejs-version-manager: ## Configure NodeJS version Manager
 	mkdir $(HOME)/.nvm

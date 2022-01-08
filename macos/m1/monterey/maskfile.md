@@ -24,11 +24,12 @@ Setup script for M1 mac macOS [Monterey](https://www.apple.com/macos/monterey/)
   - [github login](#github-login)
   - [github install-github-cli](#github-install-github-cli)
   - [github register-ssh-key](#github-register-ssh-key)
-  - [github register-ssh-key](#github-register-ssh-key-1)
-- [mask](#mask)
-  - [mask install](#mask-install)
-- [requirements-install](#requirements-install)
-- [optional-install](#optional-install)
+- [requirements-software](#requirements-software)
+  - [requirements-software install](#requirements-software-install)
+- [optional-software](#optional-software)
+  - [optional-software install](#optional-software-install)
+- [docker](#docker)
+  - [docker install](#docker-install)
 - [zsh](#zsh)
   - [zsh install-prezto](#zsh-install-prezto)
 - [vscode](#vscode)
@@ -129,29 +130,14 @@ mask --maskfile maskfiles/homebrew/maskfile.md install
 ## github
 
 
-> github configure tasks
-
-```
-mask github
-```
+> see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfiles/github/maskfile.md
 
 ### github login
 
 > github login
 
-```
-mask github login
-```
-
-**Scripts**
 ```bash
-echo "|======================================================================|"
-echo "|                                                                      |"
-echo "|                      Please Login to GitHub                         |"
-echo "|                                                                      |"
-echo "|======================================================================|"
-[[ `uname` == "Darwin" ]] && open "https://github.com/login"
-[[ `uname` == "Linux" ]] && gnome-open "https://github.com/login"
+mask --maskfile maskfiles/github/maskfile.md login
 ```
 
 ### github install-github-cli
@@ -166,8 +152,8 @@ mask github install-github-cli
 
 **Scripts**
 ```bash
-[[ ! -e /opt/homebrew/bin/brew ]] && mask homebrew install
-brew install gh
+mask --maskfile maskfiles/homebrew/maskfile.md install
+mask --maskfile maskfiles/github/maskfile.md install-github-cli
 ```
 
 ### github register-ssh-key
@@ -180,160 +166,54 @@ mask github register-ssh-key
 
 **Scripts**
 ```bash
-[[ ! -e /opt/homebrew/bin/brew ]] && mask homebrew install
-[[ ! -e /opt/homebrew/bin/gh ]] && mask github install-github-cli
-# Create SSH key & Github Auth
-gh auth login
-# Please Enter Code Jump to
-# open https://github.com/login/device
+mask --maskfile maskfiles/homebrew/maskfile.md install
+mask --maskfile maskfiles/github/maskfile.md install-github-cli
+mask --maskfile maskfiles/github/maskfile.md register-ssh-key
 ```
 
-### github register-ssh-key
+## requirements-software
 
-> Register SSH key on github
+> see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfiles/requirements-software/maskfile.md
 
-```
-mask github register-ssh-key
-```
-
-**Steps for Github Cli**
-
-**1. Choice Github.com or Github Enterprise**
-
-```
-? What account do you want to log into?  [Use arrows to move, type to filter]
-> GitHub.com
-  GitHub Enterprise Server
-```
-
-**2. Choice Protocol**
-
-```
-? What is your preferred protocol for Git operations?  [Use arrows to move, type to filter]
-  HTTPS
-> SSH
-```
-
-**3. Generate new SSH Key or choice exsits SSH Key**
-
-Not exsits SSH KEY
-```
-? Generate a new SSH key to add to your GitHub account? (Y/n)
-# usually empty password
-? Enter a passphrase for your new SSH key (Optional) 
-```
-
-
-Already exists SSH Key Question
-```
-? You're already logged into github.com. Do you want to re-authenticate? (y/N) 
-```
-
-**4. Choice Authenticate**
-
-```
-? How would you like to authenticate GitHub CLI? Login with a web browser
-
-! First copy your one-time code: xxxx-xxxx
-- Press Enter to open github.com in your browser... 
-```
-
-Response
-
-```
-✓ Authentication complete. Press Enter to continue...
-- gh config set -h github.com git_protocol ssh
-✓ Configured git protocol
-✓ Uploaded the SSH key to your GitHub account: $HOME/.ssh/id_ed25519.pub
-✓ Logged in as {your account name}
-```
-
-**Scripts**
-```bash
-[[ ! -e /opt/homebrew/bin/brew ]] && mask homebrew install
-[[ ! -e /opt/homebrew/bin/gh ]] && mask github install-github-cli
-mask ssh init
-gh auth login
-
-# Rename SSH Key
-[[ -e ~/.ssh/id_ed25519 ]] && mv ~/.ssh/id_ed25519 ~/.ssh/`whoami`.github.id_ed25519
-[[ -e ~/.ssh/id_ed25519.pub ]] && mv ~/.ssh/id_ed25519.pub ~/.ssh/`whoami`.github.id_ed25519.pub
-echo "|======================================================================|"
-echo "|                        Your Github SSH Key                           |"
-echo "|======================================================================|"
-ls -al ~/.ssh/`whoami`.github*
-
-# Add or Display SSH config
-whoami=`whoami`
-echo "|======================================================================|"
-echo "|         Check ot if not exists Paste SSH config ~/.ssh/config        |"
-echo "|======================================================================|"
-cat << EOF
-Host github.com
-  HostName github.com
-  AddKeysToAgent yes
-  UseKeychain yes
-  IdentityFile ~/.ssh/${whoami}.github.id_ed25519
-EOF
-echo "|======================================================================|"
-echo "|             Press Enter when the settings are complete               |"
-echo "|======================================================================|"
-read
-
-# Add ssh-agent
-eval "$(ssh-agent -s)"
-
-# Check Connection Github SSH
-ssh -T git@github.com
-```
-
-## mask
-
-> mask is a CLI task runner which is defined by a simple markdown file
-
-### mask install
-
-> Install mask. markdwon CLI task runner 
-
-```
-mask mask install
-```
-
-**Scripts**
-```bash
-brew install mask
-```
-
-## requirements-install
+### requirements-software install
 
 > Install almost essential software
 
 **Scripts**
 ```bash
-brew bundle --file=Brewfile.requirements
-# Docker for mac
-if [[ ! -e /Applications/Docker.app ]]; then
-  [[ ! -e /tmp/Docker.dmg ]] && curl -L -o /tmp/Docker.dmg "https://desktop.docker.com/mac/main/arm64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=docs-driven-download-mac-arm64"
-  [[ -e /Volumes/Docker ]] && hdiutil unmount /Volumes/Docker
-  hdiutil mount /tmp/Docker.dmg
-  cp -r /Volumes/Docker/Docker.app /Applications
-  hdiutil unmount /Volumes/Docker
-  rm -rf /tmp/Docker.dmg
-fi
+mask --maskfile maskfiles/homebrew/maskfile.md install
+mask --maskfile maskfiles/requirements-software/maskfile.md install
 ```
 
-## optional-install
+## optional-software
 
-> Install something that is not required but useful software
+> see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfiles/optional-software/maskfile.md
+
+### optional-software install
 
 **Scripts**
 ```bash
-brew bundle --file=Brewfile.optionals
+mask --maskfile maskfiles/homebrew/maskfile.md install
+mask --maskfile maskfiles/optional-software/maskfile.md install
+```
+
+## docker
+
+> see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfiles/docker/maskfile.md
+
+### docker install
+
+> Install Docker softwares
+
+**Scripts**
+```bash
+mask --maskfile maskfiles/homebrew/maskfile.md install
+mask --maskfile maskfiles/docker/maskfile.md install
 ```
 
 ## zsh
 
-> configure zsh tasks
+> see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfiles/zsh/maskfile.md
 
 ### zsh install-prezto
 
@@ -345,29 +225,18 @@ mask zsh install-prezto
 
 **Scripts**
 ```bash
-if [ ! -e ~/.zprezto ]; then\
-  git clone --recursive https://github.com/sorin-ionescu/prezto.git ~/.zprezto;\
-  ln -s ~/.zprezto/runcoms/zlogin ~/.zlogin;\
-  ln -s ~/.zprezto/runcoms/zlogout ~/.zlogout;\
-  ln -s ~/.zprezto/runcoms/zpreztorc ~/.zpreztorc;\
-  ln -s ~/.zprezto/runcoms/zprofile ~/.zprofile;\
-  ln -s ~/.zprezto/runcoms/zshenv ~/.zshenv;\
-fi
-cp zsh/prezto/.zpreztorc ~/.zpreztorc;\
+mask --maskfile maskfiles/xcode/maskfile.md install-commandline
+mask --maskfile maskfiles/zsh/maskfile.md install-prezto
 ```
 
 ## vscode
 
-> configure vscode tasks
+> see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfiles/vscode/maskfile.md
 
 ### vscode configure
 
 > initalize configure vscode setting
 
 ```bash
-cp vscode/keybinding.json ~/Library/Application\ Support/Code/User/
-cp vscode/settings.json ~/Library/Application\ Support/Code/User/
-cat vscode/VSCodeExtFile | while read line ; do \
-  code --install-extension $line; \
-done;
+mask --maskfile maskfiles/zsh/maskfile.md configure
 ```

@@ -55,6 +55,14 @@ mask github register-ssh-key
 mask requirements install
 ```
 
+## macos-configure
+
+> Tasks related to macOS settings macOSの設定に関するタスク
+
+```bash
+echo "test"
+```
+
 ## mac-setting
 
 > Tasks related to mac settings

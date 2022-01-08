@@ -1,13 +1,29 @@
+# Tasks SSH
+
+Tasks related to SSH
+
+SSHの設定に関するタスク
+
+# Usage
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-- [Tasks For M1 Mac Monterey Install Initialize](#tasks-for-m1-mac-monterey-install-initialize)
+- [init](#init)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# Tasks For M1 Mac Monterey Install Initialize
+## init
 
-Setup script for M1 mac macOS [Monterey](https://www.apple.com/macos/monterey/)
+> ssh init directory & file
 
-see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfile.md
+```bash
+mask init
+```
+
+```bash
+mkdir -p ~/.ssh
+chmod 700 ~/.ssh
+[[ ! -e ~/.ssh/config ]] && touch ~/.ssh/config && chmod 600 ~/.ssh/config
+```

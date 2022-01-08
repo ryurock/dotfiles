@@ -9,15 +9,15 @@ Setup script for M1 mac macOS [Monterey](https://www.apple.com/macos/monterey/)
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [install](#install)
-- [mac-setting](#mac-setting)
-  - [mac-setting disable-gatekeeper](#mac-setting-disable-gatekeeper)
-  - [mac-setting modify-defaults](#mac-setting-modify-defaults)
+- [macos-configure](#macos-configure)
+  - [macos-configure disable-gatekeeper](#macos-configure-disable-gatekeeper)
+  - [macos-configure modify-defaults](#macos-configure-modify-defaults)
 - [ssh](#ssh)
   - [ssh init](#ssh-init)
 - [font](#font)
-  - [install-ricty-font](#install-ricty-font)
+  - [font install-ricty-font](#font-install-ricty-font)
 - [xcode](#xcode)
-  - [xcode commandline-install](#xcode-commandline-install)
+  - [xcode install-commandline](#xcode-install-commandline)
 - [homebrew](#homebrew)
   - [homebrew install](#homebrew-install)
 - [github](#github)
@@ -57,7 +57,7 @@ mask requirements install
 
 ## macos-configure
 
-> Tasks related to macOS settings macOSの設定に関するタスク
+> see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfiles/macos/maskfile.md
 
 ### macos-configure disable-gatekeeper
 
@@ -80,82 +80,50 @@ mask --maskfile maskfiles/macos/maskfile.md modify-defaults
 
 ## ssh
 
-> ssh configure tasks
+> see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfiles/ssh/maskfile.md
 
 ### ssh init
 
 > ssh init directory & file
 
 ```bash
-mask ssh init
-```
-
-```bash
-mkdir -p ~/.ssh
-chmod 700 ~/.ssh
-[[ ! -e ~/.ssh/config ]] && touch ~/.ssh/config && chmod 600 ~/.ssh/config
+mask --maskfile maskfiles/ssh/maskfile.md init
 ```
 
 ## font
 
-> font configure tasks
+> see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfiles/font/maskfile.md
 
-### install-ricty-font
+### font install-ricty-font
 
 > Install Ricty Font
 
 ```bash
-# fonts for https://github.com/edihbrandon/RictyDiminished
-mkdir -p ~/Downloads/RictyDiminished/
-rm -rf ~/Downloads/RictyDiminished/*.ttf
-curl -o ~/Downloads/RictyDiminished/RictyDiminished-Regular.ttf https://raw.githubusercontent.com/edihbrandon/RictyDiminished/master/RictyDiminished-Regular.ttf
-curl -o ~/Downloads/RictyDiminished/RictyDiminished-Bold.ttf https://raw.githubusercontent.com/edihbrandon/RictyDiminished/master/RictyDiminished-Bold.ttf
-mv ~/Downloads/RictyDiminished/ /Library/Fonts/
-
+mask --maskfile maskfiles/font/maskfile.md install-ricty-font
 ```
 
 ## xcode
 
-> XCode related tasks
+> see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfiles/xcode/maskfile.md
 
-```
-mask xcode
-```
-
-### xcode commandline-install
+### xcode install-commandline
 
 > Xcode Commandline Install
 
-```
-mask xcode commandline-install
-```
-
-**Scripts**
 ```bash
-xcode-select --install
+mask --maskfile maskfiles/xcode/maskfile.md install-commandline
 ```
 
 ## homebrew
 
-> MacOS Package Manager Homebrew tasks
-
-```
-mask homebrew
-```
+> see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfiles/homebrew/maskfile.md
 
 ### homebrew install
 
 > Install MacOS Package Manager Homebrew
 
-```
-mask homebrew install
-```
-
-**Scripts**
 ```bash
-[[ ! -e /opt/homebrew/bin/brew ]] && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.zprofile
-eval "$(/opt/homebrew/bin/brew shellenv)"
+mask --maskfile maskfiles/homebrew/maskfile.md install
 ```
 
 ## github

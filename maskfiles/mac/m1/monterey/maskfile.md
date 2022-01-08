@@ -172,7 +172,7 @@ mask github login
 ```bash
 echo "|======================================================================|"
 echo "|                                                                      |"
-echo "|                      Please log in to GitHub                         |"
+echo "|                      Please Login to GitHub                         |"
 echo "|                                                                      |"
 echo "|======================================================================|"
 [[ `uname` == "Darwin" ]] && open "https://github.com/login"

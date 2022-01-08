@@ -28,7 +28,6 @@ Setup script for M1 mac macOS [Monterey](https://www.apple.com/macos/monterey/)
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## install
----
 
 > 推奨する機能全てをインストールします
 
@@ -48,7 +47,6 @@ mask requirements install
 ```
 
 ## mac-setting
----
 
 > Tasks related to mac settings
 
@@ -79,8 +77,37 @@ echo "|======================================================================|"
 sudo spctl --master-disable
 ```
 
+### mac-setting modify-defaults
+
+> Add settings to make your mac easier to use
+
+```
+mask mac-setting modify-defaults
+```
+
+**Scripts**
+```bash
+# キーリピートを限界まで早くする
+defaults write -g InitialKeyRepeat -int 13
+defaults write -g KeyRepeat -int 1
+# .DS_Storeが作られないようにする
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+# タップでクリックできるようにしています。
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -int 1
+# カーソルの速さを早くする
+defaults write -g com.apple.trackpad.scaling -float 7
+# 隠しファイルを可視化しています。
+defaults write com.apple.finder AppleShowAllFiles true
+# 拡張子も可視化しています。
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock tilesize -int 30
+defaults write com.apple.dock autohide-delay -float 0
+```
+
+
 ## xcode
----
 
 > XCode related tasks
 
@@ -125,7 +152,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
 
 ## github
----
+
 
 > github configure tasks
 
@@ -336,4 +363,29 @@ fi
 **Scripts**
 ```bash
 brew bundle --file=Brewfile.optionals
+```
+
+## zsh
+
+> configure zsh tasks
+
+### zsh install-prezto
+
+> Install prezto
+
+```
+mask zsh install-prezto
+```
+
+**Scripts**
+```bash
+if [ ! -e ~/.zprezto ]; then\
+  git clone --recursive https://github.com/sorin-ionescu/prezto.git ~/.zprezto;\
+  ln -s ~/.zprezto/runcoms/zlogin ~/.zlogin;\
+  ln -s ~/.zprezto/runcoms/zlogout ~/.zlogout;\
+  ln -s ~/.zprezto/runcoms/zpreztorc ~/.zpreztorc;\
+  ln -s ~/.zprezto/runcoms/zprofile ~/.zprofile;\
+  ln -s ~/.zprezto/runcoms/zshenv ~/.zshenv;\
+fi
+cp zsh/prezto/.zpreztorc ~/.zpreztorc;\
 ```

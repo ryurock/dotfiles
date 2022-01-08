@@ -1,0 +1,68 @@
+{
+  "entries": {
+    "tap": {
+      "homebrew/bundle": {
+        "revision": "407dafc7dbdacd1d897cfc79e8c3ab86a859ca71"
+      },
+      "homebrew/cask": {
+        "revision": "a2f99960ec0b911cabfae83a40d6321fb856703d"
+      },
+      "homebrew/cask-versions": {
+        "revision": "cc3e328207d101bbe44230e594e3c4fec47f5219"
+      },
+      "homebrew/core": {
+        "revision": "2cb18311ab3f0c564a3cd89f50e6dff812cd48ae"
+      }
+    },
+    "cask": {
+      "google-chrome": {
+        "version": "97.0.4692.71",
+        "options": {
+          "full_name": "google-chrome"
+        }
+      },
+      "karabiner-elements": {
+        "version": "14.3.0",
+        "options": {
+          "full_name": "karabiner-elements"
+        }
+      },
+      "skitch": {
+        "version": "2.9,265157",
+        "options": {
+          "full_name": "skitch"
+        }
+      },
+      "appcleaner": {
+        "version": "3.6.0,4070",
+        "options": {
+          "full_name": "appcleaner"
+        }
+      },
+      "spectacle": {
+        "version": "1.2,672",
+        "options": {
+          "full_name": "spectacle"
+        }
+      },
+      "google-japanese-ime": {
+        "version": "latest",
+        "options": {
+          "full_name": "google-japanese-ime"
+        }
+      }
+    }
+  },
+  "system": {
+    "macos": {
+      "monterey": {
+        "HOMEBREW_VERSION": "3.3.9",
+        "HOMEBREW_PREFIX": "/opt/homebrew",
+        "Homebrew/homebrew-core": "2cb18311ab3f0c564a3cd89f50e6dff812cd48ae",
+        "CLT": "13.0.0.0.1.1627064638",
+        "Xcode": "13.1",
+        "macOS": "12.1"
+      }
+    }
+  }
+}

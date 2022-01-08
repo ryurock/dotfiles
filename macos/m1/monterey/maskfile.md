@@ -59,69 +59,24 @@ mask requirements install
 
 > Tasks related to macOS settings macOSの設定に関するタスク
 
-```bash
-echo "test"
-```
-
-## mac-setting
-
-> Tasks related to mac settings
-
-```
-mask mac-setting
-```
-
-### mac-setting disable-gatekeeper
+### macos-configure disable-gatekeeper
 
 > Unblock third-party applications on your Mac
 
 ![macOS-10-13-High-Sierra-New-Features-Secure_Kernel_Extension_Loading-img-2](https://user-images.githubusercontent.com/1619084/148622932-4dc42786-85ad-4323-bcda-6044c7351aee.jpg)
 
-```
-mask mac-setting disable-gatekeeper
-```
-
-**Scripts**
 ```bash
-echo "|======================================================================|"
-echo "| Turn off GateKeeper on your Mac.                                     |"
-echo "| This is required to allow apps that are not registered               |"
-echo "| in the App Store with third party products                           |"
-echo "|                                                                      |"
-echo "| Enter password as sudo permission is required                        |"
-echo "|                                                                      |"
-echo "|======================================================================|"
-sudo spctl --master-disable
+mask --maskfile maskfiles/macos/maskfile.md disable-gatekeeper
 ```
 
-### mac-setting modify-defaults
+### macos-configure modify-defaults
 
 > Add settings to make your mac easier to use
 
-```
-mask mac-setting modify-defaults
+```bash
+mask --maskfile maskfiles/macos/maskfile.md modify-defaults
 ```
 
-**Scripts**
-```bash
-# キーリピートを限界まで早くする
-defaults write -g InitialKeyRepeat -int 13
-defaults write -g KeyRepeat -int 1
-# .DS_Storeが作られないようにする
-defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
-defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
-# タップでクリックできるようにしています。
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -int 1
-# カーソルの速さを早くする
-defaults write -g com.apple.trackpad.scaling -float 7
-# 隠しファイルを可視化しています。
-defaults write com.apple.finder AppleShowAllFiles true
-# 拡張子も可視化しています。
-defaults write NSGlobalDomain AppleShowAllExtensions -bool true
-defaults write com.apple.dock autohide -bool true
-defaults write com.apple.dock tilesize -int 30
-defaults write com.apple.dock autohide-delay -float 0
-```
 
 ## ssh
 

@@ -109,6 +109,41 @@ defaults write com.apple.dock tilesize -int 30
 defaults write com.apple.dock autohide-delay -float 0
 ```
 
+## ssh
+
+> ssh configure tasks
+
+### ssh init
+
+> ssh init directory & file
+
+```bash
+mask ssh init
+```
+
+```bash
+mkdir -p ~/.ssh
+chmod 700 ~/.ssh
+[[ ! -e ~/.ssh/config ]] && touch ~/.ssh/config && chmod 600 ~/.ssh/config
+```
+
+## font
+
+> font configure tasks
+
+### install-ricty-font
+
+> Install Ricty Font
+
+```bash
+# fonts for https://github.com/edihbrandon/RictyDiminished
+mkdir -p ~/Downloads/RictyDiminished/
+rm -rf ~/Downloads/RictyDiminished/*.ttf
+curl -o ~/Downloads/RictyDiminished/RictyDiminished-Regular.ttf https://raw.githubusercontent.com/edihbrandon/RictyDiminished/master/RictyDiminished-Regular.ttf
+curl -o ~/Downloads/RictyDiminished/RictyDiminished-Bold.ttf https://raw.githubusercontent.com/edihbrandon/RictyDiminished/master/RictyDiminished-Bold.ttf
+mv ~/Downloads/RictyDiminished/ /Library/Fonts/
+
+```
 
 ## xcode
 
@@ -280,6 +315,7 @@ Response
 ```bash
 [[ ! -e /opt/homebrew/bin/brew ]] && mask homebrew install
 [[ ! -e /opt/homebrew/bin/gh ]] && mask github install-github-cli
+mask ssh init
 gh auth login
 
 # Rename SSH Key
@@ -292,30 +328,20 @@ ls -al ~/.ssh/`whoami`.github*
 
 # Add or Display SSH config
 whoami=`whoami`
-if [[ ! -e ~/.ssh/config ]]; then
-  cat << EOF > ~/.ssh/config
+echo "|======================================================================|"
+echo "|         Check ot if not exists Paste SSH config ~/.ssh/config        |"
+echo "|======================================================================|"
+cat << EOF
 Host github.com
   HostName github.com
   AddKeysToAgent yes
   UseKeychain yes
   IdentityFile ~/.ssh/${whoami}.github.id_ed25519
 EOF
-  echo "|======================================================================|"
-  echo "|                    Your SSH Config ~/.ssh/config                     |"
-  echo "|======================================================================|"
-  cat ~/.ssh/config
-else
-  echo "|======================================================================|"
-  echo "|         Check ot if not exists Paste SSH config ~/.ssh/config        |"
-  echo "|======================================================================|"
-  cat << EOF
-Host github.com
-  HostName github.com
-  AddKeysToAgent yes
-  UseKeychain yes
-  IdentityFile ~/.ssh/${whoami}.github.id_ed25519
-EOF
-fi
+echo "|======================================================================|"
+echo "|             Press Enter when the settings are complete               |"
+echo "|======================================================================|"
+read
 
 # Add ssh-agent
 eval "$(ssh-agent -s)"
@@ -391,4 +417,20 @@ if [ ! -e ~/.zprezto ]; then\
   ln -s ~/.zprezto/runcoms/zshenv ~/.zshenv;\
 fi
 cp zsh/prezto/.zpreztorc ~/.zpreztorc;\
+```
+
+## vscode
+
+> configure vscode tasks
+
+### vscode configure
+
+> initalize configure vscode setting
+
+```bash
+cp vscode/keybinding.json ~/Library/Application\ Support/Code/User/
+cp vscode/settings.json ~/Library/Application\ Support/Code/User/
+cat vscode/VSCodeExtFile | while read line ; do \
+  code --install-extension $line; \
+done;
 ```

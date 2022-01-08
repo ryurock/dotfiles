@@ -101,11 +101,8 @@ Response
 ### Setting Github SSH Key
 
 ```bash
-echo "Give it any name you like for SSHkey on github. For example, your company name or your account name."
-read name && \
-mv ~/.ssh/id_ed25519 $name.github.id_ed25519 && \
-mv ~/.ssh/id_ed25519.pub $name.github.id_ed25519.pub && \
-ls -al ~/.ssh/$name.github.id_*
+mv ~/.ssh/id_ed25519 ~/.ssh/`whoami`.github.id_ed25519
+mv ~/.ssh/id_ed25519.pub ~/.ssh/`whoami`.github.id_ed25519.pub
 ```
 
 ### Add SSH config
@@ -143,7 +140,7 @@ git clone git@github.com:ryurock/dotfiles.git
 [Github jakedeichert/mask](https://github.com/jakedeichert/mask)
 
 ```bash
-brew install
+brew install mask
 ```
 
 ## Usage

@@ -11,6 +11,7 @@ Setup script for M1 mac macOS [Monterey](https://www.apple.com/macos/monterey/)
 - [install](#install)
 - [mac-setting](#mac-setting)
   - [mac-setting disable-gatekeeper](#mac-setting-disable-gatekeeper)
+  - [mac-setting modify-defaults](#mac-setting-modify-defaults)
 - [xcode](#xcode)
   - [xcode commandline-install](#xcode-commandline-install)
 - [homebrew](#homebrew)
@@ -24,6 +25,8 @@ Setup script for M1 mac macOS [Monterey](https://www.apple.com/macos/monterey/)
   - [mask install](#mask-install)
 - [requirements-install](#requirements-install)
 - [optional-install](#optional-install)
+- [zsh](#zsh)
+  - [zsh install-prezto](#zsh-install-prezto)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

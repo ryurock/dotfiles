@@ -10,27 +10,23 @@ zshの設定に関するタスク
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-- [install-prezto](#install-prezto)
+- [configure](#configure)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## install-prezto
+## configure
 
-> Install prezto
+> Configure VSCode
 
 ```bash
-mask install-prezto
+mask configure
 ```
 
 **Scripts**
 ```bash
-if [ ! -e ~/.zprezto ]; then
-  git clone --recursive https://github.com/sorin-ionescu/prezto.git ~/.zprezto
-  ln -s ~/.zprezto/runcoms/zlogin ~/.zlogin
-  ln -s ~/.zprezto/runcoms/zlogout ~/.zlogout
-  ln -s ~/.zprezto/runcoms/zpreztorc ~/.zpreztorc
-  ln -s ~/.zprezto/runcoms/zprofile ~/.zprofile
-  ln -s ~/.zprezto/runcoms/zshenv ~/.zshenv
-fi
-cp maskfiles/zsh/prezto/.zpreztorc ~/.zpreztorc
+cp maskfiles/vscode/keybinding.json ~/Library/Application\ Support/Code/User/
+cp maskfiles/vscode/settings.json ~/Library/Application\ Support/Code/User/
+cat maskfiles/vscode/VSCodeExtFile | while read line ; do
+  code --install-extension $line
+done
 ```

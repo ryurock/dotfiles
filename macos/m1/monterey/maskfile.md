@@ -12,6 +12,10 @@ Setup script for M1 mac macOS [Monterey](https://www.apple.com/macos/monterey/)
 - [macos-configure](#macos-configure)
   - [macos-configure disable-gatekeeper](#macos-configure-disable-gatekeeper)
   - [macos-configure modify-defaults](#macos-configure-modify-defaults)
+- [zsh](#zsh)
+  - [zsh init](#zsh-init)
+  - [zsh install-prezto](#zsh-install-prezto)
+  - [zsh peco-history](#zsh-peco-history)
 - [ssh](#ssh)
   - [ssh init](#ssh-init)
 - [font](#font)
@@ -30,8 +34,6 @@ Setup script for M1 mac macOS [Monterey](https://www.apple.com/macos/monterey/)
   - [optional-software install](#optional-software-install)
 - [docker](#docker)
   - [docker install](#docker-install)
-- [zsh](#zsh)
-  - [zsh install-prezto](#zsh-install-prezto)
 - [vscode](#vscode)
   - [vscode configure](#vscode-configure)
 
@@ -78,6 +80,49 @@ mask --maskfile maskfiles/macos/maskfile.md disable-gatekeeper
 mask --maskfile maskfiles/macos/maskfile.md modify-defaults
 ```
 
+## zsh
+
+> see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfiles/zsh/maskfile.md
+
+### zsh init
+
+> initialize zsh
+
+```
+mask zsh init
+```
+
+**Scripts**
+```bash
+mask --maskfile maskfiles/zsh/maskfile.md init
+```
+
+### zsh install-prezto
+
+> Install prezto
+
+```
+mask zsh install-prezto
+```
+
+**Scripts**
+```bash
+mask --maskfile maskfiles/xcode/maskfile.md install-commandline
+mask --maskfile maskfiles/zsh/maskfile.md install-prezto
+```
+
+### zsh peco-history
+
+> Configure history search with peco
+
+```
+mask zsh peco-history
+```
+
+**Scripts**
+```bash
+mask --maskfile maskfiles/zsh/maskfile.md peco-history
+```
 
 ## ssh
 
@@ -209,24 +254,6 @@ mask --maskfile maskfiles/optional-software/maskfile.md install
 ```bash
 mask --maskfile maskfiles/homebrew/maskfile.md install
 mask --maskfile maskfiles/docker/maskfile.md install
-```
-
-## zsh
-
-> see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfiles/zsh/maskfile.md
-
-### zsh install-prezto
-
-> Install prezto
-
-```
-mask zsh install-prezto
-```
-
-**Scripts**
-```bash
-mask --maskfile maskfiles/xcode/maskfile.md install-commandline
-mask --maskfile maskfiles/zsh/maskfile.md install-prezto
 ```
 
 ## vscode

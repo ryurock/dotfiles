@@ -1,0 +1,28 @@
+# !<include section Prezto>
+
+# Pathの設定順番に注意
+export PATH="$HOME/bin":"/usr/local/bin":"$PATH"
+
+#
+# etc
+#
+export CLICOLOR=1
+export LSCOLORS=gxfxcxdxbxegedabagacad
+
+# メモリに保存される履歴の件数
+export HISTSIZE=1000
+
+# 履歴ファイルに保存される履歴の件数
+export SAVEHIST=10000
+export EDITOR='vim'
+alias ls='ls --color=auto'
+alias ll='ls -al'
+
+# $0はcurrent shellを判断するときに用いる
+# see http://tkuchiki.hatenablog.com/entry/2014/05/08/222135
+if [ `echo $0 | grep -c "zsh"` -eq 1 ]; then
+  # 開始と終了を記録
+  setopt EXTENDED_HISTORY
+fi
+
+# !<include section peco>

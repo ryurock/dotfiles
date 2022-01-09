@@ -39,28 +39,9 @@ Setup script for M1 mac macOS [Monterey](https://www.apple.com/macos/monterey/)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## install
-
-> 推奨する機能全てをインストールします
-
-```
-mask install
-```
-
-**Scripts**
-```bash
-mask xcode commandline-install
-mask mac-setting disable-gatekeeper
-mask homebrew install
-mask github login
-mask github install-github-cli
-mask github register-ssh-key
-mask requirements install
-```
-
 ## macos-configure
 
-> see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfiles/macos/maskfile.md
+> see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfiles/macos/README.md
 
 ### macos-configure disable-gatekeeper
 
@@ -69,7 +50,7 @@ mask requirements install
 ![macOS-10-13-High-Sierra-New-Features-Secure_Kernel_Extension_Loading-img-2](https://user-images.githubusercontent.com/1619084/148622932-4dc42786-85ad-4323-bcda-6044c7351aee.jpg)
 
 ```bash
-mask --maskfile maskfiles/macos/maskfile.md disable-gatekeeper
+mask --maskfile maskfiles/macos/README.md disable-gatekeeper
 ```
 
 ### macos-configure modify-defaults
@@ -77,12 +58,12 @@ mask --maskfile maskfiles/macos/maskfile.md disable-gatekeeper
 > Add settings to make your mac easier to use
 
 ```bash
-mask --maskfile maskfiles/macos/maskfile.md modify-defaults
+mask --maskfile maskfiles/macos/README.md modify-defaults
 ```
 
 ## zsh
 
-> see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfiles/zsh/maskfile.md
+> see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfiles/zsh/README.md
 
 ### zsh init
 
@@ -94,7 +75,7 @@ mask zsh init
 
 **Scripts**
 ```bash
-mask --maskfile maskfiles/zsh/maskfile.md init
+mask --maskfile maskfiles/zsh/README.md init
 ```
 
 ### zsh install-prezto
@@ -107,8 +88,8 @@ mask zsh install-prezto
 
 **Scripts**
 ```bash
-mask --maskfile maskfiles/xcode/maskfile.md install-commandline
-mask --maskfile maskfiles/zsh/maskfile.md install-prezto
+mask --maskfile maskfiles/xcode/README.md install-commandline
+mask --maskfile maskfiles/zsh/README.md install-prezto
 ```
 
 ### zsh peco-history
@@ -121,43 +102,43 @@ mask zsh peco-history
 
 **Scripts**
 ```bash
-mask --maskfile maskfiles/zsh/maskfile.md peco-history
+mask --maskfile maskfiles/zsh/README.md peco-history
 ```
 
 ## ssh
 
-> see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfiles/ssh/maskfile.md
+> see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfiles/ssh/README.md
 
 ### ssh init
 
 > ssh init directory & file
 
 ```bash
-mask --maskfile maskfiles/ssh/maskfile.md init
+mask --maskfile maskfiles/ssh/README.md init
 ```
 
 ## font
 
-> see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfiles/font/maskfile.md
+> see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfiles/font/README.md
 
 ### font install-ricty-font
 
 > Install Ricty Font
 
 ```bash
-mask --maskfile maskfiles/font/maskfile.md install-ricty-font
+mask --maskfile maskfiles/font/README.md install-ricty-font
 ```
 
 ## xcode
 
-> see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfiles/xcode/maskfile.md
+> see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfiles/xcode/README.md
 
 ### xcode install-commandline
 
 > Xcode Commandline Install
 
 ```bash
-mask --maskfile maskfiles/xcode/maskfile.md install-commandline
+mask --maskfile maskfiles/xcode/README.md install-commandline
 ```
 
 ## homebrew
@@ -175,14 +156,14 @@ mask --maskfile maskfiles/homebrew/README.md install
 ## github
 
 
-> see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfiles/github/maskfile.md
+> see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfiles/github/README.md
 
 ### github login
 
 > github login
 
 ```bash
-mask --maskfile maskfiles/github/maskfile.md login
+mask --maskfile maskfiles/github/README.md login
 ```
 
 ### github install-github-cli
@@ -198,7 +179,7 @@ mask github install-github-cli
 **Scripts**
 ```bash
 mask --maskfile maskfiles/homebrew/README.md install
-mask --maskfile maskfiles/github/maskfile.md install-github-cli
+mask --maskfile maskfiles/github/README.md install-github-cli
 ```
 
 ### github register-ssh-key
@@ -212,13 +193,13 @@ mask github register-ssh-key
 **Scripts**
 ```bash
 mask --maskfile maskfiles/homebrew/README.md install
-mask --maskfile maskfiles/github/maskfile.md install-github-cli
-mask --maskfile maskfiles/github/maskfile.md register-ssh-key
+mask --maskfile maskfiles/github/README.md install-github-cli
+mask --maskfile maskfiles/github/README.md register-ssh-key
 ```
 
 ## requirements-software
 
-> see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfiles/requirements-software/maskfile.md
+> see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfiles/requirements-software/README.md
 
 ### requirements-software install
 
@@ -227,19 +208,19 @@ mask --maskfile maskfiles/github/maskfile.md register-ssh-key
 **Scripts**
 ```bash
 mask --maskfile maskfiles/homebrew/README.md install
-mask --maskfile maskfiles/requirements-software/maskfile.md install
+mask --maskfile maskfiles/requirements-software/README.md install
 ```
 
 ## optional-software
 
-> see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfiles/optional-software/maskfile.md
+> see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfiles/optional-software/README.md
 
 ### optional-software install
 
 **Scripts**
 ```bash
 mask --maskfile maskfiles/homebrew/README.md install
-mask --maskfile maskfiles/optional-software/maskfile.md install
+mask --maskfile maskfiles/optional-software/README.md install
 ```
 
 ## docker
@@ -258,12 +239,12 @@ mask --maskfile maskfiles/docker/README.md install
 
 ## vscode
 
-> see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfiles/vscode/maskfile.md
+> see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfiles/vscode/README.md
 
 ### vscode configure
 
 > initalize configure vscode setting
 
 ```bash
-mask --maskfile maskfiles/zsh/maskfile.md configure
+mask --maskfile maskfiles/zsh/README.md configure
 ```

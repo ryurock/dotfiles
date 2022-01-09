@@ -10,4 +10,4 @@
 
 Setup script for M1 mac macOS [Monterey](https://www.apple.com/macos/monterey/)
 
-see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfile.md
+see [maskfile.md](maskfile.md)

@@ -148,17 +148,17 @@ brew install mask
 Change dir Your OS and OS Version
 
 ```
-maskfiles
-└── mac
-    └── m1
-        └── monterey
-            └── maskfile.md
+macos
+└── m1
+    └── monterey
+        ├── README.md
+        └── maskfile.md
 ```
 
 change dir.
 
 ```
-cd maskfiles/mac/m1/monterey
+cd /macos/m1/monterey
 ```
 
 help
@@ -166,10 +166,3 @@ help
 ```
 mask help
 ```
-
-Install all
-
-```
-mask install
-```
-

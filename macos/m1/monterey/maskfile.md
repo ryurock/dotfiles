@@ -8,7 +8,6 @@ Setup script for M1 mac macOS [Monterey](https://www.apple.com/macos/monterey/)
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-- [install](#install)
 - [macos-configure](#macos-configure)
   - [macos-configure disable-gatekeeper](#macos-configure-disable-gatekeeper)
   - [macos-configure modify-defaults](#macos-configure-modify-defaults)

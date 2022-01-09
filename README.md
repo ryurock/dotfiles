@@ -1,3 +1,26 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [dotfiles](#dotfiles)
+  - [Installration](#installration)
+    - [Install XCode Commandline Tool](#install-xcode-commandline-tool)
+    - [Disable Gatekeeper](#disable-gatekeeper)
+    - [Install Rossete](#install-rossete)
+    - [Install Homebrew](#install-homebrew)
+    - [Setup Github](#setup-github)
+    - [Install Github CLI](#install-github-cli)
+    - [Setting Github SSH Key](#setting-github-ssh-key)
+    - [Add SSH config](#add-ssh-config)
+    - [Start ssh-agent](#start-ssh-agent)
+    - [Check Connection Github SSH](#check-connection-github-ssh)
+    - [Clone dotfile](#clone-dotfile)
+    - [Install mask](#install-mask)
+  - [Usage](#usage)
+  - [Index](#index)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # dotfiles
 
 my dotfiles
@@ -166,3 +189,7 @@ help
 ```
 mask help
 ```
+
+## Index
+
+* [Apple sillicon macOS Monterey dotfiles](macos/m1/monterey/)

@@ -162,14 +162,14 @@ mask --maskfile maskfiles/xcode/maskfile.md install-commandline
 
 ## homebrew
 
-> see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfiles/homebrew/maskfile.md
+> see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfiles/homebrew/README.md
 
 ### homebrew install
 
 > Install MacOS Package Manager Homebrew
 
 ```bash
-mask --maskfile maskfiles/homebrew/maskfile.md install
+mask --maskfile maskfiles/homebrew/README.md install
 ```
 
 ## github
@@ -197,7 +197,7 @@ mask github install-github-cli
 
 **Scripts**
 ```bash
-mask --maskfile maskfiles/homebrew/maskfile.md install
+mask --maskfile maskfiles/homebrew/README.md install
 mask --maskfile maskfiles/github/maskfile.md install-github-cli
 ```
 
@@ -211,7 +211,7 @@ mask github register-ssh-key
 
 **Scripts**
 ```bash
-mask --maskfile maskfiles/homebrew/maskfile.md install
+mask --maskfile maskfiles/homebrew/README.md install
 mask --maskfile maskfiles/github/maskfile.md install-github-cli
 mask --maskfile maskfiles/github/maskfile.md register-ssh-key
 ```
@@ -226,7 +226,7 @@ mask --maskfile maskfiles/github/maskfile.md register-ssh-key
 
 **Scripts**
 ```bash
-mask --maskfile maskfiles/homebrew/maskfile.md install
+mask --maskfile maskfiles/homebrew/README.md install
 mask --maskfile maskfiles/requirements-software/maskfile.md install
 ```
 
@@ -238,13 +238,13 @@ mask --maskfile maskfiles/requirements-software/maskfile.md install
 
 **Scripts**
 ```bash
-mask --maskfile maskfiles/homebrew/maskfile.md install
+mask --maskfile maskfiles/homebrew/README.md install
 mask --maskfile maskfiles/optional-software/maskfile.md install
 ```
 
 ## docker
 
-> see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfiles/docker/maskfile.md
+> see https://github.com/ryurock/dotfiles/tree/master/macos/m1/monterey/maskfiles/docker/README.md
 
 ### docker install
 
@@ -252,8 +252,8 @@ mask --maskfile maskfiles/optional-software/maskfile.md install
 
 **Scripts**
 ```bash
-mask --maskfile maskfiles/homebrew/maskfile.md install
-mask --maskfile maskfiles/docker/maskfile.md install
+mask --maskfile maskfiles/homebrew/README.md install
+mask --maskfile maskfiles/docker/README.md install
 ```
 
 ## vscode
